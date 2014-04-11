@@ -130,6 +130,9 @@ int cpu_eth_init(bd_t *bis)
 #ifdef CONFIG_SUNXI_EMAC
 	sunxi_emac_initialize(bis);
 #else
+#ifdef CONFIG_BANANAPI
+	gpio_direction_output(SUNXI_GPH(23), 1);
+#endif
 	sunxi_gmac_initialize(bis);
 #endif
 
