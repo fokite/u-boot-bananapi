@@ -46,7 +46,7 @@ int sunxi_gpio_set_drv(u32 pin, u32 val)
 	struct sunxi_gpio *pio =
 	    &((struct sunxi_gpio_reg *)SUNXI_PIO_BASE)->gpio_bank[bank];
 
-	clrsetbits_le32(&pio->drv[0] + index, 0x3 << offset, val);
+	clrsetbits_le32(&pio->drv[0] + index, 0x3 << offset, val << offset);
 
 	return 0;
 }
@@ -59,7 +59,7 @@ int sunxi_gpio_set_pull(u32 pin, u32 val)
 	struct sunxi_gpio *pio =
 	    &((struct sunxi_gpio_reg *)SUNXI_PIO_BASE)->gpio_bank[bank];
 
-	clrsetbits_le32(&pio->pull[0] + index, 0x3 << offset, offset);
+	clrsetbits_le32(&pio->pull[0] + index, 0x3 << offset, val << offset);
 
 	return 0;
 }
